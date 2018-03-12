@@ -1,0 +1,27 @@
+AllCops:
+  Exclude:
+    - '.git-hooks/**/*'
+    - 'bin/*'
+    - 'db/schema.rb'
+    - 'db/migrate/*'
+    - 'vendor/bundle/**/*'
+    - 'config/environments/*'
+    - 'Rakefile'
+
+Style/ModuleFunction:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+
+Metrics/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false
+
+Lint/UnusedBlockArgument:
+  Enabled: false
