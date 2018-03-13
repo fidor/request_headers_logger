@@ -19,13 +19,13 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ['lib']
 
-  # to be changed once we have it in the rubygems
-  # gem.add_dependency 'request_headers_middleware'
-  gem.add_dependency 'activesupport'
-  gem.add_development_dependency 'delayed_job'
-  gem.add_development_dependency 'rack'
-  gem.add_development_dependency 'rake'
-  gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'rubocop'
-  gem.add_development_dependency 'simplecov'
+  gem.add_dependency 'activesupport', '> 4.0'
+  gem.add_dependency 'request_headers_middleware', '~> 0.0.4'
+
+  gem.add_development_dependency 'delayed_job', '~> 4.1', '>= 4.1.4'
+  gem.add_development_dependency 'rack', '~> 1.6', '>= 1.6.5'
+  gem.add_development_dependency 'rake', '~> 12.0', '>= 12.0.0'
+  gem.add_development_dependency 'rspec', '~> 3.5', '>= 3.5.0'
+  gem.add_development_dependency 'rubocop', '~> 0.53.0'
+  gem.add_development_dependency 'simplecov', '~> 0.12.0'
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support'
+require 'request_headers_middleware'
 require 'request_headers_logger/delayed_job/delayed_job'
 
 module RequestHeadersLogger # :nodoc:

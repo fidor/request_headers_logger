@@ -1,16 +1,9 @@
-GIT
-  remote: git@github.com:wshihadeh/request_headers_middleware.git
-  revision: 013d4ae8b3eb9ed716a9fe41b1cf38ba4ff38cb8
-  ref: 013d4ae8b3eb9ed716a9fe41b1cf38ba4ff38cb8
-  specs:
-    request_headers_middleware (0.0.4)
-      request_store
-
 PATH
   remote: .
   specs:
     request_headers_logger (0.0.1)
-      activesupport
+      activesupport (> 4.0)
+      request_headers_middleware (~> 0.0.4)
 
 GEM
   remote: https://rubygems.org/
@@ -37,6 +30,8 @@ GEM
     rack (1.6.5)
     rainbow (3.0.0)
     rake (12.0.0)
+    request_headers_middleware (0.0.4)
+      request_store
     request_store (1.4.0)
       rack (>= 1.4)
     rspec (3.5.0)
@@ -74,14 +69,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  delayed_job
-  rack
-  rake
+  delayed_job (~> 4.1, >= 4.1.4)
+  rack (~> 1.6, >= 1.6.5)
+  rake (~> 12.0, >= 12.0.0)
   request_headers_logger!
-  request_headers_middleware!
-  rspec
-  rubocop
-  simplecov
+  rspec (~> 3.5, >= 3.5.0)
+  rubocop (~> 0.53.0)
+  simplecov (~> 0.12.0)
 
 BUNDLED WITH
    1.16.1
