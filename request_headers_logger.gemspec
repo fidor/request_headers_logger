@@ -11,7 +11,7 @@ Gem::Specification.new do |gem|
   gem.email         = ['wshihadh@gmail.com']
   gem.description   = 'RequestHeaderLogger Allows you to tag logs with RequestHeader flags.'
   gem.summary       = 'RequestHeaderLogger Allows you to tag logs with RequestHeader flags.'
-  gem.homepage      = 'https://github.com/wshihadeh/request_headers_logger'
+  gem.homepage      = 'https://github.com/fidor/request_headers_logger'
   gem.licenses      = ['MIT']
 
   gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
