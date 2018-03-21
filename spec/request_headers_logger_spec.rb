@@ -25,6 +25,8 @@ RSpec.describe RequestHeadersLogger do
 
       expect(RequestHeadersLogger.tags.count).to eq(0)
       expect(RequestHeadersLogger.tags).to eq({})
+
+      RequestHeadersMiddleware.store = {}
     end
 
     it 'return only the white listed flags' do
@@ -34,6 +36,8 @@ RSpec.describe RequestHeadersLogger do
       expect(RequestHeadersLogger.tags.count).to eq(2)
       expect(RequestHeadersLogger.tags[:'X-Request-Id']).to eq('ef382618-e46d-42f5-aca6-ae9e1db8fee0')
       expect(RequestHeadersLogger.tags[:'X-Request-Id2']).to eq('e46def38-2618-42f5-ae9e-1db8fee0aca6')
+
+      RequestHeadersMiddleware.store = {}
     end
   end
 end
