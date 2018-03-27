@@ -7,7 +7,14 @@ module RequestHeadersLogger
     end
 
     def tags_text
-      RequestHeadersLogger.tags.collect { |_key, tag| "[#{tag}] " }.join if RequestHeadersLogger.tags.any?
+      RequestHeadersLogger.tags.collect { |key, val| tag_value(key, val) }.join if RequestHeadersLogger.tags.any?
+    end
+
+    def tag_value(key, value)
+      tag = value.to_s
+      tag = "#{key}: #{tag}" if RequestHeadersLogger.tag_format.eql? 'key_val'
+
+      "[#{tag}] "
     end
   end
 end

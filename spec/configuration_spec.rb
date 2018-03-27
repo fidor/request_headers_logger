@@ -21,6 +21,22 @@ RSpec.describe RequestHeadersLogger::Configuration do
     end
   end
 
+  describe '.tag_format' do
+    it 'return val as default' do
+      expect(config.tag_format).to eq('val')
+    end
+
+    it 'return val when log_format is not supported' do
+      config[:tag_format] = 'unknwn'
+      expect(config.tag_format).to eq('val')
+    end
+
+    it 'return tag_format value when it is supported' do
+      config[:tag_format] = 'key_val'
+      expect(config.tag_format).to eq('key_val')
+    end
+  end
+
   describe '[]' do
     it 'return text as default for log_format' do
       expect(config[:log_format]).to eq('text')
