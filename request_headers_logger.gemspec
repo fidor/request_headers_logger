@@ -11,7 +11,7 @@ Gem::Specification.new do |gem|
   gem.email         = ['wshihadh@gmail.com']
   gem.description   = 'RequestHeaderLogger Allows you to tag logs with RequestHeader flags.'
   gem.summary       = 'RequestHeaderLogger Allows you to tag logs with RequestHeader flags.'
-  gem.homepage      = 'https://github.com/wshihadeh/request_headers_logger'
+  gem.homepage      = 'https://github.com/fidor/request_headers_logger'
   gem.licenses      = ['MIT']
 
   gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
@@ -19,7 +19,6 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ['lib']
 
-  gem.add_dependency 'activesupport', '> 4.0'
   gem.add_dependency 'request_headers_middleware', '~> 0.0.4'
 
   gem.add_development_dependency 'delayed_job', '~> 4.1', '>= 4.1.4'

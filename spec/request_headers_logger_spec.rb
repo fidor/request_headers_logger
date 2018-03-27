@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'active_support'
 
 RSpec.describe RequestHeadersLogger do
-  let(:logger) { ActiveSupport::TaggedLogging.new(Logger.new(STDOUT)) }
+  let(:logger) { Logger.new(STDOUT) }
 
   describe '.tags' do
     before(:each) do
@@ -26,6 +25,8 @@ RSpec.describe RequestHeadersLogger do
 
       expect(RequestHeadersLogger.tags.count).to eq(0)
       expect(RequestHeadersLogger.tags).to eq({})
+
+      RequestHeadersMiddleware.store = {}
     end
 
     it 'return only the white listed flags' do
@@ -35,31 +36,8 @@ RSpec.describe RequestHeadersLogger do
       expect(RequestHeadersLogger.tags.count).to eq(2)
       expect(RequestHeadersLogger.tags[:'X-Request-Id']).to eq('ef382618-e46d-42f5-aca6-ae9e1db8fee0')
       expect(RequestHeadersLogger.tags[:'X-Request-Id2']).to eq('e46def38-2618-42f5-ae9e-1db8fee0aca6')
-    end
-  end
 
-  describe '.tag_logger' do
-    it 'tag the logger' do
-      store = { 'X-Request-Id': 'ef382618-e46d-42f5-aca6-ae9e1db8fee0' }
-      RequestHeadersMiddleware.store = store
-      RequestHeadersLogger.tag_logger logger
-      tags = logger.formatter.current_tags
-
-      expect(tags.count).to eq(1)
-      expect(tags.first).to eq(store[:'X-Request-Id'])
-    end
-  end
-
-  describe '.untag_logger' do
-    it 'untag the logger' do
-      store = { 'X-Request-Id': 'ef382618-e46d-42f5-aca6-ae9e1db8fee0' }
-      RequestHeadersMiddleware.store = store
-      RequestHeadersLogger.tag_logger logger
-      RequestHeadersLogger.untag_logger logger
-      tags = logger.formatter.current_tags
-
-      expect(tags.count).to eq(0)
-      expect(tags).to eq([])
+      RequestHeadersMiddleware.store = {}
     end
   end
 end
