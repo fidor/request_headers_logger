@@ -5,6 +5,7 @@ require 'request_headers_logger/configuration'
 require 'request_headers_logger/json_formatter'
 require 'request_headers_logger/text_formatter'
 require 'request_headers_logger/delayed_job/delayed_job'
+require 'request_headers_logger/message_queue/message_queue'
 
 module RequestHeadersLogger # :nodoc:
   extend self
@@ -25,6 +26,10 @@ module RequestHeadersLogger # :nodoc:
 
   def log_format
     @configuration.log_format
+  end
+
+  def tag_format
+    @configuration.tag_format
   end
 
   def loggers

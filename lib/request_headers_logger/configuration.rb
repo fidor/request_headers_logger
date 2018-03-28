@@ -11,14 +11,17 @@ module RequestHeadersLogger
     CONFIG_KEYS = [
       :log_format, # [logger_format] default or json
       :loggers,    # [Loggers]  List of all loggers used.
+      :tag_format, # [tag_format]
     ].freeze
 
     LOG_FORMATS = %w[text json].freeze
+    TAG_FORMATS = %w[val key_val].freeze
 
     def initialize
       @configs = {
         log_format: LOG_FORMATS.first,
-        loggers: []
+        loggers: [],
+        tag_format: TAG_FORMATS.first
       }
     end
 
@@ -34,6 +37,10 @@ module RequestHeadersLogger
 
     def log_format
       LOG_FORMATS.include?(@configs[:log_format]) ? @configs[:log_format] : LOG_FORMATS.first
+    end
+
+    def tag_format
+      TAG_FORMATS.include?(@configs[:tag_format]) ? @configs[:tag_format] : TAG_FORMATS.first
     end
   end
 end

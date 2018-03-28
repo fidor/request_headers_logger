@@ -17,12 +17,28 @@ RSpec.describe RequestHeadersLogger::TextFormatter do
     expect(buffer.string).to match(/I, \[[0-9\-T:\.# ]*\]  INFO -- dummy: text log message$/)
   end
 
-  it 'include tags in the log line' do
-    RequestHeadersMiddleware.store = { 'X-Request-Id': 'ef382618', 'tag': 'SSS' }
+  context 'store has some tags' do
+    before do
+      RequestHeadersMiddleware.store = { 'X-Request-Id': 'ef382618', 'tag': 'SSS' }
+    end
 
-    logger.info('text log message')
-    expect(buffer.string).to match(/I, \[[0-9\-T:\.# ]*\]  INFO -- dummy: \[ef382618\] text log message$/)
+    after do
+      RequestHeadersMiddleware.store = {}
+      RequestHeadersLogger.configure { |c| c[:tag_format] = 'val' }
+    end
 
-    RequestHeadersMiddleware.store = {}
+    it 'output tags with key_val formmat' do
+      RequestHeadersLogger.configure { |c| c[:tag_format] = 'key_val' }
+      logger.info('text log message')
+      output = buffer.string
+
+      expect(output).to match(/I, \[[0-9\-T:\.# ]*\]  INFO -- dummy: \[X-Request-Id: ef382618\] text log message$/)
+    end
+
+    it 'include tags in the log line' do
+      logger.info('text log message')
+
+      expect(buffer.string).to match(/I, \[[0-9\-T:\.# ]*\]  INFO -- dummy: \[ef382618\] text log message$/)
+    end
   end
 end
