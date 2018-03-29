@@ -9,7 +9,8 @@ RSpec.describe RequestHeadersLogger::JsonFormatter do
   let(:logger) do
     logger = Logger.new(buffer)
     logger.progname = 'dummy'
-    logger.formatter = RequestHeadersLogger::JsonFormatter.new
+    logger.formatter = Logger::Formatter.new
+    logger.formatter.extend RequestHeadersLogger::JsonFormatter
     logger
   end
 
