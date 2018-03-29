@@ -1,9 +1,17 @@
 # frozen_string_literal: true
 
+require 'English'
+
 module RequestHeadersLogger
-  class TextFormatter < ::Logger::Formatter
-    def call(severity, timestamp, progname, msg)
-      super(severity, timestamp, progname, "#{tags_text}#{msg}")
+  module TextFormatter
+    def call(severity, time, progname, msg)
+      format(::Logger::Formatter::Format,
+             severity[0..0],
+             format_datetime(time),
+             $PID,
+             severity,
+             progname,
+             msg2str("#{tags_text}#{msg}"))
     end
 
     def tags_text

@@ -26,8 +26,9 @@ module RequestHeadersLogger
         loggers = [Delayed::Worker.logger]
         loggers << ::Rails.logger
 
-        config[:loggers] = loggers
+        config[:loggers].push(loggers).flatten!.uniq!
       end
+      RequestHeadersLogger.prepare_loggers
     end
   end
 end

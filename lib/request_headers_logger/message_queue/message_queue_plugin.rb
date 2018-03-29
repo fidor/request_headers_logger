@@ -25,7 +25,7 @@ module RequestHeadersLogger
         store = symbolize(properties.headers).dig(:store) || {}
         RequestHeadersMiddleware.store = store
 
-        set_dj_loggers
+        set_mq_loggers
       end
 
       lifecycle.after(:consume) do |delivery_info, properties, payload|
@@ -33,10 +33,11 @@ module RequestHeadersLogger
       end
     end
 
-    def self.set_dj_loggers
+    def self.set_mq_loggers
       RequestHeadersLogger.configure do |config|
-        config[:loggers] = [MessageQueue.logger]
+        config[:loggers] << MessageQueue.logger
       end
+      RequestHeadersLogger.prepare_loggers
     end
   end
 end
