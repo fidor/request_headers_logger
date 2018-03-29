@@ -16,8 +16,6 @@ module RequestHeadersLogger # :nodoc:
 
   def configure
     yield @configuration
-
-    prepare_loggers
   end
 
   def tags
@@ -36,16 +34,16 @@ module RequestHeadersLogger # :nodoc:
     @configuration[:loggers]
   end
 
-  private
-
   def prepare_loggers
     loggers.each do |logger|
       logger_formatter logger
     end
   end
 
+  private
+
   def logger_formatter(logger)
-    logger.tap { |obj| obj.formatter = formatter_class.new }
+    logger.formatter.extend formatter_class
   end
 
   def formatter_class
