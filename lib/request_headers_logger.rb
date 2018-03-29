@@ -43,6 +43,7 @@ module RequestHeadersLogger # :nodoc:
   private
 
   def logger_formatter(logger)
+    logger.formatter ||= Logger::Formatter.new
     logger.formatter.extend formatter_class
   end
 
