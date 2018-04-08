@@ -22,7 +22,7 @@ module RequestHeadersLogger
       end
 
       lifecycle.before(:consume) do |delivery_info, properties, payload|
-        store = symbolize(properties.headers).dig(:store) || {}
+        store = symbolize(properties.headers)&.dig(:store) || {}
         RequestHeadersMiddleware.store = store
 
         set_mq_loggers
