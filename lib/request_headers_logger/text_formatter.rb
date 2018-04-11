@@ -6,12 +6,17 @@ module RequestHeadersLogger
   module TextFormatter
     def call(severity, time, progname, msg)
       format(::Logger::Formatter::Format,
-             severity[0..0],
+             severity_name(severity)[0],
              format_datetime(time),
              $PID,
-             severity,
+             severity_name(severity),
              progname,
              msg2str("#{tags_text}#{msg}"))
+    end
+
+    def severity_name(severity)
+      return Logger::Severity.constants[severity].to_s if severity.is_a?(Integer)
+      severity
     end
 
     def tags_text
