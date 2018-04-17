@@ -31,6 +31,16 @@ $ bundle
 That's it now Delayed job logs should show the *X-Request-Id* from the http request.
 
 
+### Configure RequestHeadersLogger
+
+```
+ RequestHeadersLogger.configure do |config|
+  config[:logger_format] = 'json'         # Options [text json] default: text
+  config[:tag_format] = 'key_val'         # Options: [val key_val] default: val
+  config[:Loggers] << MessageQueue.logger # List of all loggers used.
+end
+```
+
 ### Whitelist
 
 Per default the delayed job plug in applies a whitelist to only filter *X-Request-Id* header from the store. To white list new flags, you can do the following.
