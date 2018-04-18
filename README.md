@@ -16,7 +16,7 @@ The gem can be used to share *RequestHeader* store items the asynchronous servic
 
 So how does it work with Rails.
 
-Add this line to your application's Gemfile:
+Add this line to your application's Gemfile after the delayed job and message_queue gems:
 
 ```ruby
 gem 'request_headers_logger'
