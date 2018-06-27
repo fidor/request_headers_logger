@@ -8,12 +8,6 @@ rvm:
 
 before_install: gem install bundler
 
-script: bin/travis
-
-matrix:
-  fast_finish: true
-
-env:
-  matrix:
-    - BUILD_TYPE=rspec
-    - BUILD_TYPE=rubocop
+script:
+  - bundle exec rspec
+  - bundle exec rubocop
