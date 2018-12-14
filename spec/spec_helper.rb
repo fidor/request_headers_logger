@@ -31,12 +31,14 @@ require 'bundler/setup'
 # use explicit requiring
 Bundler.require(:test)
 
+require 'pry-byebug'
 Dir[File.join('./spec/support/**/*.rb')].each { |f| require f }
 
 # Set Rails environment as test
 ENV['RAILS_ENV'] = 'test'
 
 require 'delayed_job'
+require 'sidekiq'
 require 'request_headers_middleware'
 require 'request_headers_logger'
 require 'rack/mock'

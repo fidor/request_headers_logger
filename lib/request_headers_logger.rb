@@ -6,6 +6,8 @@ require 'request_headers_logger/json_formatter'
 require 'request_headers_logger/text_formatter'
 require 'request_headers_logger/delayed_job/delayed_job'
 require 'request_headers_logger/message_queue/message_queue'
+require 'request_headers_logger/sidekiq'
+require 'request_headers_logger/railtie' if defined?(Rails)
 
 module RequestHeadersLogger # :nodoc:
   extend self

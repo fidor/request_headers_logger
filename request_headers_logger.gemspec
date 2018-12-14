@@ -21,10 +21,13 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'request_headers_middleware', '~> 0.0.4'
 
+  gem.add_development_dependency 'activesupport', '~> 4.0'
   gem.add_development_dependency 'delayed_job', '~> 4.1', '>= 4.1.4'
+  gem.add_development_dependency 'pry-byebug'
   gem.add_development_dependency 'rack', '~> 1.6', '>= 1.6.5'
   gem.add_development_dependency 'rake', '~> 12.0', '>= 12.0.0'
   gem.add_development_dependency 'rspec', '~> 3.5', '>= 3.5.0'
-  gem.add_development_dependency 'rubocop', '~> 0.53.0'
+  gem.add_development_dependency 'rubocop', '~> 0.61.1'
+  gem.add_development_dependency 'sidekiq', '~> 5.0'
   gem.add_development_dependency 'simplecov', '~> 0.12.0'
 end

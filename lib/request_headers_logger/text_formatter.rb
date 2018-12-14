@@ -16,6 +16,7 @@ module RequestHeadersLogger
 
     def severity_name(severity)
       return Logger::Severity.constants[severity].to_s if severity.is_a?(Integer)
+
       severity
     end
 
