@@ -45,8 +45,6 @@ RSpec.describe RequestHeadersLogger::Configuration do
 
   describe '[]=' do
     it 'assign valid config keys' do
-      logger = Logger.new(STDOUT)
-
       config[:log_format] = 'json'
 
       expect(config[:log_format]).to eq('json')

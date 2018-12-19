@@ -50,7 +50,9 @@ RSpec.describe RequestHeadersLogger::TextFormatter do
     let(:logger) do
       logger = Logger.new(buffer)
       logger.progname = 'dummy'
+      # rubocop:disable Metrics/LineLength
       logger.formatter = proc { |severity, datetime, progname, msg| "[#{datetime} ##{Process.pid}] #{severity}: #{msg}\n" }
+      # rubocop:enable Metrics/LineLength
       logger.formatter.extend RequestHeadersLogger::TextFormatter
       logger
     end
