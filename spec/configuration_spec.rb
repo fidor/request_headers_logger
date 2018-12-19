@@ -41,10 +41,6 @@ RSpec.describe RequestHeadersLogger::Configuration do
     it 'return text as default for log_format' do
       expect(config[:log_format]).to eq('text')
     end
-
-    it 'return empty array as default for loggers' do
-      expect(config[:loggers]).to eq([])
-    end
   end
 
   describe '[]=' do
@@ -52,10 +48,8 @@ RSpec.describe RequestHeadersLogger::Configuration do
       logger = Logger.new(STDOUT)
 
       config[:log_format] = 'json'
-      config[:loggers] << logger
 
       expect(config[:log_format]).to eq('json')
-      expect(config[:loggers].first).to eq(logger)
     end
 
     it 'raise an error for invalid configs ' do
