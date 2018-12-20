@@ -37,7 +37,6 @@ That's it now Delayed job logs should show the *X-Request-Id* from the http requ
 RequestHeadersLogger.configure do |config|
   config[:logger_format] = 'json'         # Options [text json] default: text
   config[:tag_format] = 'key_val'         # Options: [val key_val] default: val
-  config[:loggers] << MessageQueue.logger # List of all loggers used.
 end
 ```
 

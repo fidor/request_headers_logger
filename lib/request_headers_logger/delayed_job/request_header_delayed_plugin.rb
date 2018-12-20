@@ -13,22 +13,11 @@ module RequestHeadersLogger
 
       lifecycle.before(:perform) do |worker, job|
         RequestHeadersMiddleware.store = job.payload_object.instance_variable_get(:@store)
-        set_dj_loggers
       end
 
       lifecycle.after(:perform) do |worker, job|
         RequestHeadersMiddleware.store = {}
       end
-    end
-
-    def self.set_dj_loggers
-      RequestHeadersLogger.configure do |config|
-        loggers = [Delayed::Worker.logger]
-        loggers << ::Rails.logger
-
-        config[:loggers].push(loggers).flatten!.uniq!
-      end
-      RequestHeadersLogger.prepare_loggers
     end
   end
 end

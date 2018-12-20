@@ -24,20 +24,11 @@ module RequestHeadersLogger
       lifecycle.before(:consume) do |delivery_info, properties, payload|
         store = symbolize(properties.headers)&.dig(:store) || {}
         RequestHeadersMiddleware.store = store
-
-        set_mq_loggers
       end
 
       lifecycle.after(:consume) do |delivery_info, properties, payload|
         RequestHeadersMiddleware.store = {}
       end
-    end
-
-    def self.set_mq_loggers
-      RequestHeadersLogger.configure do |config|
-        config[:loggers] << MessageQueue.logger
-      end
-      RequestHeadersLogger.prepare_loggers
     end
   end
 end

@@ -6,6 +6,7 @@ require 'request_headers_logger/json_formatter'
 require 'request_headers_logger/text_formatter'
 require 'request_headers_logger/delayed_job/delayed_job'
 require 'request_headers_logger/message_queue/message_queue'
+require 'request_headers_logger/railtie' if defined?(Rails)
 
 module RequestHeadersLogger # :nodoc:
   extend self
@@ -34,18 +35,12 @@ module RequestHeadersLogger # :nodoc:
     @configuration[:loggers]
   end
 
-  def prepare_loggers
-    loggers.each do |logger|
-      logger_formatter logger
-    end
-  end
-
-  private
-
   def logger_formatter(logger)
     logger.formatter ||= Logger::Formatter.new
     logger.formatter.extend formatter_class
   end
+
+  private
 
   def formatter_class
     RequestHeadersLogger.const_get("#{log_format.capitalize}Formatter")
