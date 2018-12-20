@@ -15,12 +15,12 @@ module RequestHeadersLogger
     end
 
     def format_time(time)
-      return format_datetime(time) if defined?(format_datetime)
+      return format_datetime(time) if respond_to? :format_datetime
       time.strftime(@datetime_format || '%Y-%m-%dT%H:%M:%S.%6N ')
     end
 
     def to_string(msg)
-      return msg2str(msg) if defined?(format_datetime)
+      return msg2str(msg) if respond_to? :format_datetime
       return msg.inspect unless msg.is_a? String
       msg
     end
